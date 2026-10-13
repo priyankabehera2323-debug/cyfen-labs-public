@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090909">
+  <meta name="description" content="About CYFEN LABS, an independent cybersecurity learning and research project.">
+  <title>About | CYFEN LABS</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    .about-content { max-width: 1000px; margin: 55px auto; padding: 0 24px; }
+    .about-hero, .about-card { background:#111; border:1px solid #302629; border-radius:12px; padding:28px; margin-bottom:20px; }
+    .about-hero { border-left:4px solid #ff303a; }
+    .about-hero h1 { font-size:clamp(34px,5vw,58px); margin:18px 0; }
+    .about-hero h1 span, .about-card h2 { color:#ff303a; }
+    .about-content p, .about-content li { color:#b9b0b2; line-height:1.85; }
+    .about-content ul { padding-left:22px; }
+    .about-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; }
+    .about-label { color:#ff303a; font:10px 'DM Mono',monospace; letter-spacing:1.5px; }
+    .about-footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; padding:22px 0; color:#aaa; }
+    .about-content a { color:#ff6672; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="CYFEN LABS home">
+      <img src="{{ url_for('static', filename='images/cyfen-phoenix-transparent.png') }}"
+           alt="CYFEN LABS phoenix emblem" class="site-logo">
+      <span>CYFEN <strong style="color:#ff303a">LABS</strong></span>
+    </a>
+    <nav style="display:flex;gap:18px;font-size:13px" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="#focus">Focus</a>
+      <a href="#protocol">Protocol</a>
+    </nav>
+  </header>
+
+  <main class="about-content">
+    <section class="about-hero">
+      <p class="about-label">CYFEN LABS / ABOUT</p>
+      <h1>Where curiosity <span>meets the code.</span></h1>
+      <p>
+        CYFEN LABS is an independent cybersecurity learning and research
+        project built around investigation, practical learning, and responsible
+        security testing. Its aim is to explore how systems fail, how threats
+        can be detected, and how security can be improved through careful
+        analysis and continuous learning.
+      </p>
+      <p>
+        This website is currently a public project showcase. Interactive CTF
+        challenges, participant accounts, scoring, and leaderboards are not
+        enabled here. The intentionally vulnerable training challenge remains
+        in a separate local environment.
+      </p>
+      <a class="button primary" href="/">← Back to CYFEN LABS</a>
+    </section>
+
+    <section id="focus" class="about-grid">
+      <article class="about-card">
+        <p class="about-label">01 / DEFEND</p>
+        <h2>Blue Team</h2>
+        <p>Security monitoring, log analysis, alert triage, and incident investigation.</p>
+      </article>
+      <article class="about-card">
+        <p class="about-label">02 / INVESTIGATE</p>
+        <h2>Web Security</h2>
+        <p>Learning web vulnerabilities and secure development through authorized testing environments.</p>
+      </article>
+      <article class="about-card">
+        <p class="about-label">03 / LEARN</p>
+        <h2>CTF Research</h2>
+        <p>Future challenge releases will be reviewed before they become accessible through the public website.</p>
+      </article>
+    </section>
+
+    <section id="protocol" class="about-card">
+      <p class="about-label">RULES OF ENGAGEMENT</p>
+      <h2>Build responsibly<span>.</span></h2>
+      <ul>
+        <li>Test only systems you own or have explicit permission to assess.</li>
+        <li>Stay within the scope of each authorized lab.</li>
+        <li>Protect credentials, sensitive data, and challenge flags.</li>
+        <li>Disclose vulnerabilities responsibly and respect applicable laws.</li>
+      </ul>
+    </section>
+
+    <footer class="about-footer">
+      <span>© CYFEN LABS</span>
+      <a href="/">← Home</a>
+      <span>BUILD / SECURE / DEFEND</span>
+    </footer>
+  </main>
+</body>
+</html>

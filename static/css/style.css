@@ -1,0 +1,585 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap');
+
+:root {
+  color-scheme: dark;
+  --bg: #090909;
+  --panel: #111111;
+  --border: #292323;
+  --red: #ff303a;
+  --text: #f2eeee;
+  --muted: #999092;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Space Grotesk', sans-serif;
+}
+a { color: inherit; text-decoration: none; }
+.scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  opacity: .12;
+  background: repeating-linear-gradient(
+    to bottom, transparent 0 3px, #fff 4px
+  );
+  mask-image: linear-gradient(to bottom, black, transparent 80%);
+}
+.topbar {
+  min-height: 82px;
+  padding: 18px 7%;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.brand { display: flex; align-items: center; gap: 12px; font-weight: 700; letter-spacing: 1px; }
+.brand-mark {
+  width: 42px; height: 42px; border: 1px solid var(--red);
+  display: grid; place-items: center; color: white;
+  font-size: 19px; transform: rotate(-5deg);
+}
+.brand-mark span { color: var(--red); }
+.brand small { display: block; color: var(--muted); font: 9px 'DM Mono', monospace; margin-top: 4px; }
+.status, .eyebrow, .stats small, .module-count, .tags, .difficulty, footer, .notice {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.status { color: var(--muted); }
+.status i, .difficulty i {
+  display: inline-block; width: 7px; height: 7px;
+  border-radius: 50%; background: var(--red); margin-right: 8px;
+  box-shadow: 0 0 10px #ff303a88;
+}
+.container { max-width: 1160px; margin: auto; padding: 0 30px; }
+.hero {
+  min-height: 470px; display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  align-items: center; gap: 30px; padding: 54px 0;
+}
+.eyebrow { color: var(--red); }
+.eyebrow span { color: #6d5557; margin: 0 7px; }
+h1 { font-size: clamp(36px, 5vw, 62px); line-height: 1.07; letter-spacing: -2px; margin: 23px 0; }
+h1 span { color: var(--red); }
+.intro { max-width: 510px; color: var(--muted); line-height: 1.8; font-size: 14px; }
+.button {
+  display: inline-flex; justify-content: center; align-items: center; gap: 16px;
+  min-height: 44px; padding: 0 18px; font-weight: 600; font-size: 12px;
+  transition: .2s ease; cursor: pointer;
+}
+.primary { margin-top: 18px; background: var(--red); color: #fff; }
+.primary:hover { background: #d91d29; transform: translateY(-2px); }
+.phoenix-panel {
+  min-height: 310px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; position: relative;
+  overflow: hidden; border: 1px solid var(--border);
+  background: radial-gradient(ellipse, #341115 0%, #140d0e 42%, #0a0a0a 74%);
+}
+.orbit { position: absolute; width: 220px; height: 220px; border: 1px solid #ff303a35; transform: rotate(45deg); }
+.orbit-two { width: 175px; height: 175px; transform: rotate(20deg); }
+.phoenix { font-size: 104px; line-height: 1.2; color: var(--red); text-shadow: 0 0 30px #ff303a70; animation: pulse 3s ease-in-out infinite; }
+.phoenix-caption { font: 10px 'DM Mono', monospace; letter-spacing: 3px; margin-top: 12px; }
+.signature { font: 36px 'Caveat', cursive; color: var(--red); margin-top: 10px; transform: rotate(-7deg); }
+.signature span { font-family: 'DM Mono', monospace; }
+.stats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--border); background: #0d0d0d;
+}
+.stats div { padding: 22px; border-right: 1px solid var(--border); }
+.stats div:last-child { border: 0; }
+.stats span { display: block; font-weight: 700; font-size: 17px; margin-bottom: 8px; }
+.stats small { color: var(--muted); font-size: 9px; }
+.challenge-section { padding: 78px 0 60px; }
+.section-heading { display: flex; justify-content: space-between; align-items: end; margin-bottom: 24px; }
+h2 { font-size: 32px; margin: 8px 0 0; }
+h2 span { color: var(--red); }
+.module-count { color: var(--muted); }
+.challenge-card {
+  display: grid; grid-template-columns: 65px 1fr auto; gap: 22px;
+  padding: 30px; border: 1px solid var(--border); background: var(--panel);
+  transition: border-color .2s;
+}
+.challenge-card:hover { border-color: #7b292e; }
+.challenge-number { font: 23px 'DM Mono', monospace; color: var(--red); }
+.tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.tags span { color: #e9a3a6; background: #351417; padding: 6px 8px; font-size: 9px; }
+h3 { font-size: 24px; margin: 18px 0 8px; }
+.challenge-info p { max-width: 650px; color: var(--muted); line-height: 1.7; font-size: 13px; }
+.objectives { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 20px; color: #c7c0c1; font-size: 11px; }
+.objectives span::first-letter { color: var(--red); }
+.challenge-action { display: flex; flex-direction: column; align-items: end; justify-content: space-between; gap: 30px; }
+.difficulty { color: #e9a3a6; }
+.outline { border: 1px solid #683035; }
+.outline:hover { background: #351417; }
+.notice { color: var(--muted); line-height: 1.8; margin-top: 20px; letter-spacing: .2px; }
+.notice span { color: var(--red); font-size: 15px; margin-right: 8px; }
+footer {
+  border-top: 1px solid var(--border); padding: 25px 0;
+  display: flex; justify-content: space-between; gap: 15px;
+  color: #777; font-size: 9px;
+}
+footer b { color: var(--red); }
+@keyframes pulse {
+  0%, 100% { text-shadow: 0 0 20px #ff303a50; }
+  50% { text-shadow: 0 0 42px #ff303a; }
+}
+@media (max-width: 760px) {
+  .topbar { padding: 16px 20px; }
+  .status { font-size: 8px; }
+  .container { padding: 0 18px; }
+  .hero { grid-template-columns: 1fr; padding: 55px 0 30px; }
+  .phoenix-panel { min-height: 260px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stats div:nth-child(2) { border-right: 0; }
+  .stats div:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
+  .challenge-card { grid-template-columns: 40px 1fr; padding: 20px 15px; gap: 14px; }
+  .challenge-action { grid-column: 2; flex-direction: row; align-items: center; }
+  .section-heading { align-items: start; gap: 10px; }
+  h2 { font-size: 26px; }
+  footer { flex-wrap: wrap; }
+}
+/* CYFEN LABS phoenix branding */
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.site-logo {
+    display: block;
+    width: 54px;
+    height: 54px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.brand-name {
+    color: #f5f1f2;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.brand-name strong {
+    color: #ff3045;
+}
+
+@media (max-width: 480px) {
+    .site-logo {
+        width: 42px;
+        height: 42px;
+    }
+
+    .brand-name {
+        letter-spacing: 1px;
+    }
+}
+.phoenix-image {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    height: 200px;
+    object-fit: contain;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    mix-blend-mode: screen;
+}
+
+/* Cleaner CYFEN phoenix artwork */
+.phoenix-panel {
+    border-color: transparent;
+    background: transparent;
+}
+
+.phoenix-image {
+    mix-blend-mode: normal;
+}
+
+/* Softer scanlines for comfortable reading */
+.scanlines {
+    opacity: 0.035;
+}
+
+/* Disable the CRT scanline overlay */
+.scanlines {
+    display: none !important;
+}
+
+/* Remove any scanline texture applied to the page */
+body {
+    background-image: none !important;
+}
+
+/* Clean, frameless phoenix display */
+.phoenix-panel {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+.phoenix-panel .orbit {
+    display: none !important;
+}
+
+.phoenix-image {
+    background: transparent !important;
+    mix-blend-mode: normal !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+
+/* CYFEN LABS: difficulty dot colors only */
+.difficulty {
+    color: #e9a3a6 !important;
+}
+
+.difficulty i {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-right: 8px;
+    background-color: #ff3045;
+    box-shadow: 0 0 10px #ff304588;
+}
+
+.difficulty.easy i,
+.difficulty.beginner i,
+.difficulty[data-level="easy"] i {
+    background-color: #39d353 !important;
+    box-shadow: 0 0 10px #39d353 !important;
+}
+
+.difficulty.intermediate i,
+.difficulty.medium i,
+.difficulty[data-level="intermediate"] i {
+    background-color: #FFD700 !important;
+    box-shadow: 0 0 10px #FFD700 !important;
+}
+
+.difficulty.difficult i,
+.difficulty.hard i,
+.difficulty[data-level="difficult"] i,
+.difficulty[data-level="hard"] i {
+    background-color: #ff3045 !important;
+    box-shadow: 0 0 10px #ff3045 !important;
+}
+
+/* CYFEN LABS: difficulty dot colors only */
+.difficulty {
+    color: #e9a3a6 !important;
+}
+
+.difficulty i {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-right: 8px;
+    background-color: #ff3045;
+    box-shadow: 0 0 10px #ff304588;
+}
+
+.difficulty.easy i,
+.difficulty.beginner i,
+.difficulty[data-level="easy"] i {
+    background-color: #39d353 !important;
+    box-shadow: 0 0 10px #39d353 !important;
+}
+
+.difficulty.intermediate i,
+.difficulty.medium i,
+.difficulty[data-level="intermediate"] i {
+    background-color: #FFD700 !important;
+    box-shadow: 0 0 10px #FFD700 !important;
+}
+
+.difficulty.difficult i,
+.difficulty.hard i,
+.difficulty[data-level="difficult"] i,
+.difficulty[data-level="hard"] i {
+    background-color: #ff3045 !important;
+    box-shadow: 0 0 10px #ff3045 !important;
+}
+
+/* Login result: responsive account table and visible CTF flag */
+.account-result {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  min-width: 0;
+  border: 1px solid #343b4b;
+  border-radius: 12px;
+  background: #101319;
+}
+
+.account-result h2 {
+  margin: 0 0 1rem;
+  font-size: 1.15rem;
+}
+
+.table-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid #343b4b;
+  border-radius: 8px;
+}
+
+.account-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.account-table th,
+.account-table td {
+  padding: 0.85rem;
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  border-bottom: 1px solid #343b4b;
+}
+
+.account-table thead th {
+  background: #202431;
+  color: #f4f5f7;
+}
+
+.account-table tbody th {
+  width: 35%;
+  color: #d1d5db;
+  background: #181c26;
+}
+
+.account-table tbody td {
+  color: #f4f5f7;
+  background: #141821;
+}
+
+.account-table tr:last-child th,
+.account-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.flag-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+  padding: 1rem;
+  border: 1px solid #ff3045;
+  border-radius: 10px;
+  background: #260f16;
+  min-width: 0;
+}
+
+.flag-label {
+  color: #ff6575;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.flag-panel code {
+  display: block;
+  max-width: 100%;
+  color: #ffffff;
+  font-size: 1rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  user-select: text;
+}
+
+@media (max-width: 520px) {
+  .account-result {
+    padding: 0.8rem;
+  }
+
+  .account-table th,
+  .account-table td {
+    padding: 0.65rem;
+    font-size: 0.9rem;
+  }
+}
+
+.challenge-page .account-result {
+  grid-column: 1 / -1;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.challenge-page .table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.challenge-page .account-table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.challenge-page .account-table th,
+.challenge-page .account-table td {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+@media (max-width: 700px) {
+  .challenge-page .container {
+    width: calc(100% - 28px);
+  }
+
+  .challenge-page .hero {
+    padding: 36px 0 24px;
+  }
+
+  .challenge-page .challenge-card {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "mission"
+      "title"
+      "description"
+      "result"
+      "form"
+      "hints";
+    gap: 20px;
+    padding: 22px 18px;
+  }
+
+  .challenge-page .login-form button {
+    width: 100%;
+  }
+
+  .challenge-page .hint-panel {
+    padding: 16px;
+  }
+
+  .challenge-page .footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* CYFEN_LOGIN_LAYOUT_FIX */
+.challenge-page .container {
+  width: min(1100px, calc(100% - 40px));
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+.challenge-page .hero {
+  display: block;
+  min-height: 0;
+  padding: 40px 0 24px;
+}
+
+.challenge-page .challenge-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.8fr);
+  grid-template-areas:
+    "mission mission"
+    "title title"
+    "description description"
+    "result result"
+    "form hints";
+  align-items: start;
+  gap: 20px 32px;
+  padding: clamp(22px, 4vw, 40px);
+  min-width: 0;
+}
+
+.challenge-page .challenge-card > .eyebrow { grid-area: mission; }
+.challenge-page .challenge-card > h2 { grid-area: title; margin: 0; line-height: 1.2; }
+.challenge-page .challenge-card > p:not(.eyebrow) { grid-area: description; line-height: 1.7; }
+.challenge-page .result-message { grid-area: result; overflow-wrap: anywhere; }
+
+.challenge-page .login-form {
+  grid-area: form;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+}
+
+.challenge-page .login-form label { display: block; }
+
+.challenge-page .login-form input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  padding: 12px;
+}
+
+.challenge-page .login-form button {
+  align-self: flex-start;
+  min-width: 150px;
+  max-width: 100%;
+  padding: 12px 20px;
+  white-space: normal;
+  line-height: 1.5;
+}
+
+.challenge-page .hint-panel {
+  grid-area: hints;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid #383238;
+  border-radius: 10px;
+  background: #151315;
+}
+
+.challenge-page .hint-panel h3 { margin-top: 0; line-height: 1.3; }
+.challenge-page .hint-panel summary { cursor: pointer; line-height: 1.6; overflow-wrap: anywhere; }
+.challenge-page .hint-panel details { padding: 12px 0; border-top: 1px solid #383238; }
+.challenge-page .hint-panel details p { line-height: 1.7; }
+
+.challenge-page .account-result {
+  grid-column: 1 / -1;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.challenge-page .table-wrap { max-width: 100%; overflow-x: auto; }
+.challenge-page .account-table { width: 100%; table-layout: fixed; }
+.challenge-page .account-table th,
+.challenge-page .account-table td { overflow-wrap: anywhere; word-break: break-word; }
+
+@media (max-width: 700px) {
+  .challenge-page .container { width: calc(100% - 28px); }
+
+  .challenge-page .challenge-card {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "mission"
+      "title"
+      "description"
+      "result"
+      "form"
+      "hints";
+    gap: 20px;
+    padding: 22px 18px;
+  }
+
+  .challenge-page .login-form button { width: 100%; }
+  .challenge-page .hint-panel { padding: 16px; }
+  .challenge-page .footer { align-items: flex-start; flex-direction: column; }
+}

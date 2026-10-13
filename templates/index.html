@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090909">
+  <meta name="description" content="CYFEN LABS — cybersecurity learning, defensive research, and authorized security testing.">
+  <title>CYFEN LABS | Build. Secure. Defend.</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    .public-nav { display:flex; align-items:center; gap:22px; }
+    .public-nav a { color:#c9c1c2; font-size:13px; }
+    .public-nav a:hover { color:#ff303a; }
+    .public-hero { padding:70px 0 45px; }
+    .public-hero h1 { max-width:760px; }
+    .public-hero .intro { max-width:650px; }
+    .public-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; padding:45px 0; }
+    .public-card { padding:24px; border:1px solid var(--border); background:var(--panel); }
+    .public-card .symbol { color:var(--red); font:24px 'DM Mono',monospace; }
+    .public-card h3 { font-size:20px; }
+    .public-card p { color:var(--muted); font-size:13px; line-height:1.8; }
+    .public-panel { border:1px solid var(--border); background:#0d0d0d; padding:28px; margin:20px 0 55px; }
+    .public-panel p { color:var(--muted); line-height:1.8; font-size:14px; }
+    .public-label { color:var(--red); font:10px 'DM Mono',monospace; letter-spacing:1.5px; }
+    @media(max-width:760px) {
+      .public-nav { gap:12px; }
+      .public-grid { grid-template-columns:1fr; padding:25px 0; }
+      .public-hero { padding-top:45px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="CYFEN LABS home">
+      <img src="{{ url_for('static', filename='images/cyfen-phoenix-transparent.png') }}"
+           alt="CYFEN LABS phoenix emblem" class="site-logo">
+      <span>CYFEN <span style="color:var(--red)">LABS</span></span>
+    </a>
+    <nav class="public-nav" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="#focus">Focus</a>
+      <a href="#protocol">Protocol</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="public-hero">
+      <p class="eyebrow">INDEPENDENT CYBERSECURITY PROJECT</p>
+      <h1>Think beyond the obvious<span>.</span></h1>
+      <p class="intro">
+        A growing cybersecurity learning and research space focused on
+        understanding threats, investigating evidence, and building practical
+        security skills through authorized environments.
+      </p>
+      <div>
+        <a class="button primary" href="/about">EXPLORE CYFEN LABS →</a>
+      </div>
+    </section>
+
+    <section class="phoenix-panel" aria-label="CYFEN LABS identity">
+      <div class="orbit"></div>
+      <div class="orbit orbit-two"></div>
+      <img src="{{ url_for('static', filename='images/cyfen-phoenix-transparent.png') }}"
+           alt="" style="position:relative;width:min(210px,55%);height:190px;object-fit:contain">
+      <p class="phoenix-caption">BUILD / SECURE / DEFEND</p>
+    </section>
+
+    <section id="focus">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">MISSION / AREAS OF INTEREST</p>
+          <h2>Security through <span>understanding.</span></h2>
+        </div>
+      </div>
+      <div class="public-grid">
+        <article class="public-card">
+          <span class="symbol">01 /</span>
+          <h3>Blue Team &amp; Detection</h3>
+          <p>Explore security monitoring, log analysis, SIEM workflows, alert triage, and incident investigation.</p>
+        </article>
+        <article class="public-card">
+          <span class="symbol">02 /</span>
+          <h3>Web Security Research</h3>
+          <p>Study web vulnerabilities, secure development, and testing methods within explicitly authorized labs.</p>
+        </article>
+        <article class="public-card">
+          <span class="symbol">03 /</span>
+          <h3>CTF Learning</h3>
+          <p>Develop investigative thinking through structured challenges. Public challenge access will be added after review.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="qingbao">
+      <p class="eyebrow">QÍNGBÀO INDEX / IN DEVELOPMENT</p>
+      <h2>Intelligence, <span>not assumptions.</span></h2>
+      <div class="public-panel">
+        <p>
+          The public index is a planned home for future verified challenge
+          results and learning milestones. Participant accounts, scores, and
+          private lab data are not available on this public site.
+        </p>
+        <p>STATUS: PUBLIC SHOWCASE · LEADERBOARD NOT YET ENABLED</p>
+      </div>
+    </section>
+
+    <section id="protocol">
+      <p class="eyebrow">RULES OF ENGAGEMENT</p>
+      <h2>Build responsibly<span>.</span></h2>
+      <div class="public-panel">
+        <p>
+          Test only systems you own or have explicit permission to assess.
+          Respect the scope of each lab, protect sensitive information, and
+          disclose vulnerabilities responsibly. Do not publish flags, credentials,
+          or complete challenge solutions without the organizer's permission.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <span>© CYFEN LABS</span>
+      <span><b>BUILD / SECURE / DEFEND</b></span>
+      <span>PUBLIC SHOWCASE</span>
+    </footer>
+  </main>
+</body>
+</html>

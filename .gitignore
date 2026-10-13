@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.py[cod]
+.env
+.flask_secret_key
+ctf.db
+*.db
+backups/
+*.backup
+*.before-*
