@@ -1,3 +1,4 @@
+
 (() => {
   const key = "cyfenAnonymousPlayer";
 
@@ -10,15 +11,7 @@
     "CipherCat"
   ];
 
-  function getPlayer() {
-    try {
-      const saved = JSON.parse(localStorage.getItem(key));
-
-      if (saved?.id && saved?.nickname) {
-        return saved;
-      }
-    } catch (_) {}
-
+  function createPlayer() {
     const player = {
       id: crypto.randomUUID(),
       nickname:
@@ -31,14 +24,40 @@
     return player;
   }
 
+  function getPlayer() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(key));
+
+      if (saved?.id && saved?.nickname) {
+        return saved;
+      }
+    } catch (_) {}
+
+    return createPlayer();
+  }
+
   function displayPlayer() {
     const player = getPlayer();
 
-    document.querySelectorAll("[data-lab-nickname]")
+    document.querySelectorAll("[data-lab-nickname], [data-player-nickname]")
       .forEach(element => {
         element.textContent = player.nickname;
       });
+
+    document.querySelectorAll("[data-player-id]")
+      .forEach(element => {
+        element.textContent = "Player ID: " + player.id;
+      });
   }
 
-  document.addEventListener("DOMContentLoaded", displayPlayer);
+  document.addEventListener("DOMContentLoaded", () => {
+    displayPlayer();
+
+    document.querySelectorAll("[data-reset-player]").forEach(button => {
+      button.addEventListener("click", () => {
+        localStorage.removeItem(key);
+        displayPlayer();
+      });
+    });
+  });
 })();

@@ -37,10 +37,9 @@
       <span>CYFEN <span style="color:var(--red)">LABS</span></span>
     </a>
     <nav class="public-nav" aria-label="Main navigation">
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="#focus">Focus</a>
-      <a href="#protocol">Protocol</a>
+      <a href="#home" data-page-link="home">Home</a>
+      <a href="#play" data-page-link="play">User</a>
+      <a href="#about" data-page-link="about">About</a>
     </nav>
     <span class="lab-id-badge">
        Lab ID: <strong data-lab-nickname>Loading...</strong>
@@ -48,6 +47,7 @@
   </header>
 
   <main class="container">
+   <div id="page-home">
     <section class="public-hero">
       <p class="eyebrow">INDEPENDENT CYBERSECURITY PROJECT</p>
       <h1>Think beyond the obvious<span>.</span></h1>
@@ -126,7 +126,86 @@
       <span><b>BUILD / SECURE / DEFEND</b></span>
       <span>PUBLIC SHOWCASE</span>
     </footer>
+   </div>
+
+<div id="page-play" hidden>
+  <section class="public-hero">
+    <p class="eyebrow">CYFEN LABS / USER PROFILE</p>
+    <h1>My Lab ID<span>.</span></h1>
+    <p class="intro">
+      Practice cybersecurity without creating an account.
+    </p>
+  </section>
+
+  <section class="public-panel">
+    <p class="public-label">YOUR PLAYER NICKNAME</p>
+    <h2 data-player-nickname>Loading...</h2>
+    <p data-player-id></p>
+    <p>
+      Your identity is stored in this browser. It is not yet registered
+      on a server or included in a shared leaderboard.
+    </p>
+    <button class="button primary" type="button" data-reset-player>
+      GENERATE A NEW IDENTITY
+    </button>
+  </section>
+</div>
+
+<div id="page-about" hidden>
+  <section class="public-hero">
+    <p class="eyebrow">CYFEN LABS / ABOUT</p>
+    <h1>Where curiosity <span>meets the code.</span></h1>
+    <p class="intro">
+      CYFEN LABS is an independent cybersecurity learning and research
+      project built around investigation, practical learning, and responsible
+      security testing. Its aim is to explore how systems fail, how threats
+      can be detected, and how security can be improved through careful
+      analysis and continuous learning.
+    </p>
+    <p class="intro">
+      This website is currently a public project showcase. Interactive CTF
+      challenges, participant accounts, scoring, and leaderboards are not
+      enabled here. The intentionally vulnerable training challenge remains
+      in a separate local environment.
+    </p>
+  </section>
+
+  <section class="public-grid">
+    <article class="public-card">
+      <span class="symbol">01 /</span>
+      <h3>Blue Team</h3>
+      <p>Security monitoring, log analysis, alert triage, and incident investigation.</p>
+    </article>
+    <article class="public-card">
+      <span class="symbol">02 /</span>
+      <h3>Web Security</h3>
+      <p>Learning web vulnerabilities and secure development through authorized testing environments.</p>
+    </article>
+    <article class="public-card">
+      <span class="symbol">03 /</span>
+      <h3>CTF Research</h3>
+      <p>Future challenge releases will be reviewed before they become accessible through the public website.</p>
+    </article>
+  </section>
+
+  <section class="public-panel">
+    <p class="public-label">RULES OF ENGAGEMENT</p>
+    <h2>Build responsibly<span>.</span></h2>
+    <p>
+      Test only systems you own or have explicit permission to assess.
+      Stay within the scope of each authorized lab, protect credentials
+      and challenge flags, and disclose vulnerabilities responsibly.
+    </p>
+  </section>
+
+  <footer>
+    <span>© CYFEN LABS</span>
+    <span><b>BUILD / SECURE / DEFEND</b></span>
+    <span>PUBLIC SHOWCASE</span>
+  </footer>
+</div>
   </main>
 <script src="{{ url_for('static', filename='js/lab-id.js') }}"></script>
+<script src="{{ url_for('static', filename='js/page-router.js') }}"></script>
 </body>
 </html>
