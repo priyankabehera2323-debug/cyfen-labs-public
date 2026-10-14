@@ -32,6 +32,9 @@
 </head>
 <body>
   <p><a href="/">← CYFEN LABS Home</a></p>
+  <p class="lab-id-badge">
+    Lab ID: <strong data-lab-nickname>Loading...</strong>
+  </p>
   <div class="panel">
     <h1>My Lab ID</h1>
     <p>Practice cybersecurity without creating an account.</p>
@@ -90,5 +93,6 @@
 
     showPlayer();
   </script>
+<script src="{{ url_for('static', filename='js/lab-id.js') }}"></script>
 </body>
 </html>
