@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Lab ID | CYFEN LABS</title>
+  <style>
+    body {
+      background: #101010;
+      color: #f5f5f5;
+      font-family: Arial, sans-serif;
+      max-width: 700px;
+      margin: 60px auto;
+      padding: 20px;
+    }
+    .panel {
+      background: #1b1b1b;
+      border: 1px solid #444;
+      border-radius: 12px;
+      padding: 24px;
+    }
+    button {
+      background: #e63946;
+      color: white;
+      border: 0;
+      border-radius: 6px;
+      padding: 10px 16px;
+      cursor: pointer;
+    }
+    a { color: #ff707a; }
+  </style>
+</head>
+<body>
+  <p><a href="/">← CYFEN LABS Home</a></p>
+  <div class="panel">
+    <h1>My Lab ID</h1>
+    <p>Practice cybersecurity without creating an account.</p>
+    <p>Your player nickname:</p>
+    <h2 id="nickname">Creating your identity...</h2>
+    <p id="player-id"></p>
+    <p id="privacy-note"></p>
+    <button id="reset">Generate a new identity</button>
+    <p><a href="/about">About CYFEN LABS</a></p>
+  </div>
+
+  <script>
+    const storageKey = "cyfenAnonymousPlayer";
+    const nicknameElement = document.getElementById("nickname");
+    const idElement = document.getElementById("player-id");
+    const privacyElement = document.getElementById("privacy-note");
+
+    function createPlayer() {
+      const words = ["CyberFox", "ByteOwl", "PacketPanda",
+                     "ShadowWolf", "PixelHawk", "CipherCat"];
+      const word = words[Math.floor(Math.random() * words.length)];
+      const number = Math.floor(100 + Math.random() * 900);
+
+      const player = {
+        id: crypto.randomUUID(),
+        nickname: `${word}-${number}`
+      };
+
+      localStorage.setItem(storageKey, JSON.stringify(player));
+      return player;
+    }
+
+    function showPlayer() {
+      let player;
+
+      try {
+        player = JSON.parse(localStorage.getItem(storageKey));
+        if (!player || !player.id || !player.nickname) {
+          player = createPlayer();
+        }
+      } catch {
+        player = createPlayer();
+      }
+
+      nicknameElement.textContent = player.nickname;
+      idElement.textContent = `Player ID: ${player.id}`;
+      privacyElement.textContent =
+        "Your identity is stored in this browser. It is not yet registered " +
+        "on a server or included in a shared leaderboard.";
+    }
+
+    document.getElementById("reset").addEventListener("click", () => {
+      localStorage.removeItem(storageKey);
+      showPlayer();
+    });
+
+    showPlayer();
+  </script>
+</body>
+</html>
