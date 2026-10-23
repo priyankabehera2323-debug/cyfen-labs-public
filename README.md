@@ -31,7 +31,7 @@ pip install -r requirements.txt
 python app.py
 ```
 
-Open cyfen-labs-public.onrender.com/ in your browser.
+Open https://cyfen-labs-public.onrender.com/ in your browser.
 
 ## Responsible use
 
